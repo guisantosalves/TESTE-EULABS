@@ -3,10 +3,18 @@ package main
 import (
 	"guisantosalves/apigolang/models"
 	"guisantosalves/apigolang/routes"
+
+	"github.com/joho/godotenv"
 )
 
 // w -> response / r -> request
 func main() {
+	// initializing dotenv file
+	err := godotenv.Load()
+	if err != nil {
+		panic(err)
+	}
+
 	// db config
 	models.InitialMigration()
 

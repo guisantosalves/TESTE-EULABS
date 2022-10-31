@@ -2,6 +2,7 @@ package models
 
 import (
 	"fmt"
+	"os"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -20,8 +21,10 @@ type Products struct {
 }
 
 func InitialMigration() {
+	password := os.Getenv("PASSWORD")
+
 	DB, err = gorm.Open(mysql.New(mysql.Config{
-		DSN: "root:15022002@/products?charset=utf8mb4&parseTime=True&loc=Local",
+		DSN: "root:" + password + "@/products?charset=utf8mb4&parseTime=True&loc=Local",
 	}), &gorm.Config{})
 	if err != nil {
 		fmt.Println(err.Error())
